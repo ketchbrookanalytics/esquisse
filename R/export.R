@@ -60,18 +60,18 @@ save_ggplot_ui <- function(id, output_format = c("png")) {
         label = tagList(ph("eye"), i18n("Update Preview")),
         style = "margin-bottom: 15px;",
         class = "btn-outline-primary text-nowrap"
+      ),
+      downloadButton(
+        outputId = ns(output_format),
+        label = tagList(esquisse::ph("download"), toupper(output_format)),
+        style = "margin-bottom: 15px;",
+        icon = NULL,
+        class = "btn-outline-primary text-nowrap"
+      ),
+      tags$div(
+        style = "display: none;",
+        textInput(inputId = ns("hidden"), label = NULL, value = genId())
       )
-    ),
-    downloadButton(
-      outputId = ns(output_format),
-      label = tagList(esquisse::ph("download"), toupper(output_format)),
-      style = "margin-bottom: 15px;",
-      icon = NULL,
-      class = "btn-outline-primary text-nowrap"
-    ),
-    tags$div(
-      style = "display: none;",
-      textInput(inputId = ns("hidden"), label = NULL, value = genId())
     )
   )
 }
