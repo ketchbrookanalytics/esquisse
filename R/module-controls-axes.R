@@ -13,12 +13,7 @@ controls_axes_ui <- function(id, default_opts) {
 
   ns <- NS(id)
 
-  scales_trans <- c(
-    "asn", "atanh", "boxcox", "exp", "identity",
-    "log", "log10", "log1p", "log2", "logit",
-    "probability", "probit", "reciprocal",
-    "reverse", "sqrt"
-  )
+  scales_trans <- c("identity", "log", "sqrt")
 
   tagList(
 
