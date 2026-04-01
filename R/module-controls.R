@@ -116,7 +116,7 @@ controls_ui <- function(id,
   }
   if (isTRUE("labs" %in% controls)) {
     listControls[[length(listControls) + 1]] <- funControl(
-      controls_labs_ui(id = ns("labs")),
+      controls_labs_ui(id = ns("labs"), default_opts),
       inputId = ns("controls-labs"),
       class = "esquisse-controls-labs",
       style = "default",
@@ -274,7 +274,8 @@ controls_server <- function(id,
                             aesthetics_r = reactive(NULL),
                             width = reactive(NULL),
                             height = reactive(NULL),
-                            drop_ids = TRUE) {
+                            drop_ids = TRUE,
+                            default_opts) {
 
   callModule(
     id = id,
@@ -294,7 +295,8 @@ controls_server <- function(id,
       labs_r <- controls_labs_server(
         id = "labs",
         data_r = data_r,
-        aesthetics_r = reactive(aesthetics_r()[[1]])
+        aesthetics_r = reactive(aesthetics_r()[[1]]),
+        default_opts
       )
 
       geometries_r <- controls_multigeoms_server(

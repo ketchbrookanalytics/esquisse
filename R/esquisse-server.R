@@ -32,7 +32,17 @@ esquisse_server <- function(id,
                             import_from = c("env", "file", "copypaste", "googlesheets", "url"),
                             n_geoms = 8,
                             drop_ids = TRUE,
-                            notify_warnings = NULL) {
+                            notify_warnings = NULL,
+                            default_opts = list(
+                              title_text_size = 13,
+                              subtitle_text_size = 11,
+                              caption_text_size = 9,
+                              x_label_text_size = 11,
+                              y_label_text_size = 11,
+                              axis_text_size = 11,
+                              legend_text_size = 11,
+                              legend_title_size = 11
+                            )) {
 
   moduleServer(
     id = id,
@@ -174,7 +184,8 @@ esquisse_server <- function(id,
         }),
         width = reactive(rv_render_ggplot$plot_width),
         height = reactive(rv_render_ggplot$plot_height),
-        drop_ids = drop_ids
+        drop_ids = drop_ids,
+        default_opts = default_opts
       )
 
 

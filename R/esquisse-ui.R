@@ -53,6 +53,11 @@ esquisse_ui <- function(id,
                         downloads = downloads_labels(),
                         n_geoms = 8,
                         default_opts = list(
+                          title_text_size = 13,
+                          subtitle_text_size = 11,
+                          caption_text_size = 9,
+                          x_label_text_size = 11,
+                          y_label_text_size = 11,
                           axis_text_size = 11,
                           legend_text_size = 11,
                           legend_title_size = 11
