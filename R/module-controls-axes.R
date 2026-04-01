@@ -155,16 +155,12 @@ controls_axes_server <- function(id,
           axis_text_x = get_axis_text(
             input$x_axis_text_face,
             input$x_axis_text_size,
-            input$x_axis_text_angle,
-            input$x_axis_text_hjust,
-            input$x_axis_text_vjust
+            input$x_axis_text_angle
           ),
           axis_text_y = get_axis_text(
             input$y_axis_text_face,
             input$y_axis_text_size,
-            input$y_axis_text_angle,
-            input$y_axis_text_hjust,
-            input$y_axis_text_vjust
+            input$y_axis_text_angle
           )
         )
       })
@@ -236,38 +232,6 @@ input_axis_text <- function(axis = c("x", "y"), ns = identity) {
         max = 360,
         width = "100%"
       )
-    ),
-    tags$div(
-      style = css(
-        display = "grid",
-        gridTemplateColumns = "repeat(2, 1fr)",
-        gridColumnGap = "2px"
-      ),
-      numericInput(
-        inputId = ns(paste0(axis, "_axis_text_hjust")),
-        label = i18n("Horizontal justification:"),
-        value = 0,
-        min = 0,
-        step = 0.1,
-        max = 1,
-        width = "100%"
-      ),
-      numericInput(
-        inputId = ns(paste0(axis, "_axis_text_vjust")),
-        label = i18n("Vertical justification:"),
-        value = 0,
-        min = 0,
-        step = 0.1,
-        max = 1,
-        width = "100%"
-      )
-      # numericInput(
-      #   inputId = ns(paste0(axis, "_axis_text_lineheight")),
-      #   label = "Line height:",
-      #   value = 1,
-      #   step = 0.1,
-      #   width = "100%"
-      # )
     )
   )
 }
