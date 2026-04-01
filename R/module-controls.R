@@ -427,11 +427,6 @@ controls_server <- function(id,
         )
       })
 
-      # coord input
-      observeEvent(axes_r$coord(), {
-        outputs$coord <- axes_r$coord()
-      }, ignoreNULL = FALSE)
-
       # transX input
       observeEvent(axes_r$transX(), {
         outputs$transX <- axes_r$transX()
