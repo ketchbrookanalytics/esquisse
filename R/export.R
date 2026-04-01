@@ -29,7 +29,7 @@ save_ggplot_ui <- function(id, output_format = c("png")) {
     tags$div(
       style = css(
         display = "grid",
-        gridTemplateColumns = "4fr 2fr 2fr 2fr",
+        gridTemplateColumns = "4fr 2fr 2fr 2fr 2fr",
         gridColumnGap = "10px",
         width = "100%"
       ),
