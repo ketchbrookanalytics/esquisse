@@ -98,7 +98,7 @@ input_legend_text <- function(type = c("text", "title"), ns = identity) {
       numericInput(
         inputId = ns(paste0("legend_", type, "_size")),
         label = i18n("Size:"),
-        value = 10,
+        value = 15,
         min = 0,
         width = "100%"
       ),

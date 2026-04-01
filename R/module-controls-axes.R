@@ -220,7 +220,7 @@ input_axis_text <- function(axis = c("x", "y"), ns = identity) {
       numericInput(
         inputId = ns(paste0(axis, "_axis_text_size")),
         label = i18n("Size:"),
-        value = 10,
+        value = 15,
         min = 0,
         width = "100%"
       ),
