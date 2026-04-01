@@ -51,7 +51,12 @@ esquisse_ui <- function(id,
                         play_pause = TRUE,
                         layout_sidebar = FALSE,
                         downloads = downloads_labels(),
-                        n_geoms = 8) {
+                        n_geoms = 8,
+                        default_opts = list(
+                          axis_text_size = 11,
+                          legend_text_size = 11,
+                          legend_title_size = 11
+                        )) {
   ns <- NS(id)
   header_btns <- esquisse_header()
   if (is_list(header)) {
@@ -123,7 +128,8 @@ esquisse_ui <- function(id,
           insert_code = insert_code,
           controls = controls,
           downloads = downloads,
-          n_geoms = n_geoms
+          n_geoms = n_geoms,
+          default_opts
         )
       )
     } else {
@@ -143,7 +149,8 @@ esquisse_ui <- function(id,
             controls = controls,
             layout = "accordion",
             downloads = downloads,
-            n_geoms = n_geoms
+            n_geoms = n_geoms,
+            default_opts
           )
         ),
 

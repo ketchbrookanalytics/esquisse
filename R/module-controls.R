@@ -59,7 +59,8 @@ controls_ui <- function(id,
                         insert_code = FALSE,
                         layout = c("dropdown", "accordion"),
                         downloads = downloads_labels(),
-                        n_geoms = 1) {
+                        n_geoms = 1,
+                        default_opts) {
   ns <- NS(id)
   layout <- match.arg(layout)
   if (!is.null(controls)) {
@@ -127,7 +128,7 @@ controls_ui <- function(id,
   }
   if (isTRUE("axes" %in% controls)) {
     listControls[[length(listControls) + 1]] <- funControl(
-      controls_axes_ui(ns("axes")),
+      controls_axes_ui(ns("axes"), default_opts),
       inputId = ns("controls-axes"),
       class = "esquisse-controls-axes",
       style = "default",
@@ -171,7 +172,8 @@ controls_ui <- function(id,
             overflowX = "hidden",
             padding = "5px 7px"
           )
-        }
+        },
+        default_opts
       ),
       inputId = ns("controls-theme"),
       class = "esquisse-controls-theme",
