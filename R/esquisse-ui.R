@@ -129,7 +129,7 @@ esquisse_ui <- function(id,
           controls = controls,
           downloads = downloads,
           n_geoms = n_geoms,
-          default_opts
+          default_opts = default_opts
         )
       )
     } else {
@@ -150,7 +150,7 @@ esquisse_ui <- function(id,
             layout = "accordion",
             downloads = downloads,
             n_geoms = n_geoms,
-            default_opts
+            default_opts = default_opts
           )
         ),
 
