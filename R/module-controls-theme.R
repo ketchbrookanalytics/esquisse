@@ -118,35 +118,19 @@ input_legend_options <- function(ns, default_opts) {
   tagList(
     tags$hr(),
     tags$b("Legend options:"),
-    radioGroupButtons(
+    selectInput(
       inputId = ns("legend_position"),
       label = i18n("Position:"),
-      choiceNames = list(
-        ph("arrow-left", title = i18n("left")),
-        ph("arrow-up", title = i18n("top")),
-        ph("arrow-down", title = i18n("bottom")),
-        ph("arrow-right", title = i18n("right")),
-        ph("x", title = i18n("none"))
-      ),
-      choiceValues = c("left", "top", "bottom", "right", "none"),
       selected = "right",
-      justified = TRUE,
-      size = "sm"
+      choices = c("Left" = "left", "Top" = "top", "Bottom" = "bottom", "Right" = "right", "None" = "none"),
+      width = "100%"
     ),
-    radioGroupButtons(
+    selectInput(
       inputId = ns("legend_justification"),
       label = i18n("Justification:"),
-      choiceNames = list(
-        ph("arrow-left", title = i18n("left")),
-        ph("arrow-up", title = i18n("top")),
-        ph("arrow-down", title = i18n("bottom")),
-        ph("arrow-right", title = i18n("right")),
-        ph("arrows-in-cardinal", title = i18n("center"))
-      ),
-      choiceValues = c("left", "top", "bottom", "right", "center"),
       selected = "center",
-      justified = TRUE,
-      size = "sm"
+      choices = c("Left" = "left", "Top" = "top", "Bottom" = "bottom", "Right" = "right", "Center" = "center"),
+      width = "100%"
     ),
     input_legend_text("text", ns = ns, default_opts),
     input_legend_text("title", ns = ns, default_opts)
