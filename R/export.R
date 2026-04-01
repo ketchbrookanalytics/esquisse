@@ -19,7 +19,7 @@
 #' @importFrom shinyWidgets textInputIcon numericInputIcon
 #'
 #' @example examples/save-ggplot-module.R
-save_ggplot_ui <- function(id, output_format = c("png", "pdf", "svg", "jpeg", "bmp", "eps", "tiff")) {
+save_ggplot_ui <- function(id, output_format = c("png")) {
   ns <- NS(id)
   output_format <- match.arg(output_format, several.ok = TRUE)
   tagList(
@@ -62,27 +62,12 @@ save_ggplot_ui <- function(id, output_format = c("png", "pdf", "svg", "jpeg", "b
         class = "btn-outline-primary text-nowrap"
       )
     ),
-    tags$div(
-      tags$label(i18n("Export format:")),
-      tags$div(
-        style = css(
-          display = "grid",
-          gridTemplateColumns = sprintf("repeat(%s, 1fr)", length(output_format)),
-          gridColumnGap = "10px"
-        ),
-        lapply(
-          X = output_format,
-          FUN = function(x) {
-            downloadButton(
-              outputId = ns(x),
-              label = tagList(ph("download"), toupper(x)),
-              style = "width: 100%;",
-              icon = NULL,
-              class = "btn-sm btn-outline-primary"
-            )
-          }
-        )
-      )
+    downloadButton(
+      outputId = ns(output_format),
+      label = tagList(esquisse::ph("download"), toupper(output_format)),
+      style = "margin-bottom: 15px;",
+      icon = NULL,
+      class = "btn-outline-primary text-nowrap"
     ),
     tags$div(
       style = "display: none;",
@@ -101,7 +86,7 @@ save_ggplot_ui <- function(id, output_format = c("png", "pdf", "svg", "jpeg", "b
 #' @importFrom htmltools tagList tags
 save_ggplot_modal <- function(id,
                               title = NULL,
-                              output_format = c("png", "pdf", "svg", "jpeg", "bmp", "eps", "tiff")) {
+                              output_format = c("png")) {
   ns <- NS(id)
   showModal(modalDialog(
     title = tagList(
