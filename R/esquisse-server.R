@@ -301,8 +301,7 @@ esquisse_server <- function(id,
         },
         filename = "esquisse-plot",
         width = reactive(controls_rv$width),
-        height = reactive(controls_rv$height),
-        use_plotly = reactive(controls_rv$plotly)
+        height = reactive(controls_rv$height)
       )
 
 

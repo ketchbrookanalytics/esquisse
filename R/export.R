@@ -234,39 +234,7 @@ ggplot_output <- function(id, width = "100%", height = "400px", downloads = down
       }
     )
   }
-  tagPlot <- if (requireNamespace(package = "plotly")) {
-    bslib::navset_hidden(
-      id = ns("type_output"),
-      selected = "plot",
-      bslib::nav_panel(
-        title = "plot",
-        tags$div(
-          id = ns("ggplot-container"),
-          class = "ggplot-container",
-          style = css(
-            position = "relative",
-            width = validateCssUnit(width),
-            height = validateCssUnit(height)
-          ),
-          plotOutput(outputId = ns("plot"), width = "100%", height = "100%", ...)
-        )
-      ),
-      bslib::nav_panel(
-        title = "plotly",
-        tags$div(
-          id = ns("ggplotly-container"),
-          class = "ggplotly-container",
-          style = css(
-            position = "relative",
-            width = validateCssUnit(width),
-            height = validateCssUnit(height)
-          ),
-          plotly::plotlyOutput(outputId = ns("plotly"), width = "100%", height = height, ...)
-        )
-      )
-    )
-  } else {
-    tags$div(
+  tagPlot <- tags$div(
       id = ns("ggplot-container"),
       class = "ggplot-container",
       style = css(
@@ -275,8 +243,7 @@ ggplot_output <- function(id, width = "100%", height = "400px", downloads = down
         height = validateCssUnit(height)
       ),
       plotOutput(outputId = ns("plot"), width = "100%", height = height, ...)
-    )
-  }
+  )
   tagList(
     html_dependency_moveable(),
     tagDownload,
@@ -320,8 +287,6 @@ downloads_labels <- function(label = ph("download-simple"),
 #' @param filename A string of the filename to export WITHOUT extension,
 #'  it will be added according to type of export.
 #' @param resizable Can the chart size be adjusted by the user?
-#' @param use_plotly A [shiny::reactive()] function returning `TRUE` or `FALSE` to render
-#'  the plot with `plotly::ggplotly()` or not.
 #'
 #' @rdname ggplot-output
 #'
@@ -337,7 +302,6 @@ render_ggplot <- function(id,
                           quoted = FALSE,
                           filename = "export-ggplot",
                           resizable = FALSE,
-                          use_plotly = reactive(FALSE),
                           width = reactive(NULL),
                           height = reactive(NULL)) {
   stopifnot("width must be a reactive function" = is.reactive(width))
@@ -362,12 +326,6 @@ render_ggplot <- function(id,
           ) {
             resize(
               id = ns("ggplot-container"),
-              width = width(),
-              height = height(),
-              with_moveable = resizable
-            )
-            resize(
-              id = ns("ggplotly-container"),
               width = width(),
               height = height(),
               with_moveable = resizable
@@ -427,23 +385,6 @@ render_ggplot <- function(id,
         rv$plot <- gg_fun()
         rv$plot
       }, ...)
-      if (requireNamespace(package = "plotly")) {
-        output$plotly <- plotly::renderPlotly({
-          rv$plot <- gg_fun()
-          plotly::ggplotly(
-            p = rv$plot,
-            width = session$clientData[[plot_width]],
-            height = session$clientData[[plot_height]]
-          )
-        })
-        observeEvent(use_plotly(), {
-          if (isTRUE(use_plotly())) {
-            bslib::nav_select(id = "type_output", selected = "plotly")
-          } else {
-            bslib::nav_select(id = "type_output", selected = "plot")
-          }
-        })
-      }
       observeEvent(input$more, {
         hideDropMenu("exports_dropmenu")
         save_ggplot_modal(

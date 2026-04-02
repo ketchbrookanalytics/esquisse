@@ -33,7 +33,6 @@ render_ggplot(
   quoted = FALSE,
   filename = "export-ggplot",
   resizable = FALSE,
-  use_plotly = reactive(FALSE),
   width = reactive(NULL),
   height = reactive(NULL)
 )
@@ -66,8 +65,6 @@ it will be added according to type of export.}
 
 \item{resizable}{Can the chart size be adjusted by the user?}
 
-\item{use_plotly}{A \code{\link[shiny:reactive]{shiny::reactive()}} function returning \code{TRUE} or \code{FALSE} to render
-the plot with \code{plotly::ggplotly()} or not.}
 }
 \value{
 Server-side, a \code{reactiveValues} with the plot.

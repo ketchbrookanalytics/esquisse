@@ -30,12 +30,6 @@ controls_options_ui <- function(id) {
       icon = list(i18n("Height:")),
       width = "100%"
     ),
-    prettySwitch(
-      inputId = ns("plotly"),
-      label = i18n("Use {plotly} to render plot"),
-      fill = TRUE,
-      status = "primary"
-    ),
     tags$div(
       id = ns("controls-facet"), style = "display: none;",
       tags$b("Facets:"),
@@ -120,8 +114,7 @@ controls_options_server <- function(id,
       return(list(
         facet = facet_r,
         width = debounce(reactive(input$width), 800),
-        height = debounce(reactive(input$height), 800),
-        plotly = reactive(input$plotly)
+        height = debounce(reactive(input$height), 800)
       ))
 
     }
