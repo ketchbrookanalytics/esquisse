@@ -59,13 +59,11 @@ controls_theme_server <- function(id) {
           legend_justification = legend_justification,
           legend_text = get_axis_text(
             input$legend_text_face,
-            input$legend_text_size,
-            input$legend_text_angle
+            input$legend_text_size
           ),
           legend_title = get_axis_text(
             input$legend_title_face,
-            input$legend_title_size,
-            input$legend_title_angle
+            input$legend_title_size
           )
         )
       })
@@ -83,7 +81,7 @@ input_legend_text <- function(type = c("text", "title"), ns = identity, default_
     tags$div(
       style = css(
         display = "grid",
-        gridTemplateColumns = "repeat(3, 1fr)",
+        gridTemplateColumns = "repeat(2, 1fr)",
         gridColumnGap = "2px"
       ),
       shinyWidgets::virtualSelectInput(
@@ -100,14 +98,6 @@ input_legend_text <- function(type = c("text", "title"), ns = identity, default_
         label = i18n("Size:"),
         value = if(type == "text") default_opts$legend_text_size else default_opts$legend_title_size,
         min = 0,
-        width = "100%"
-      ),
-      numericInput(
-        inputId = ns(paste0("legend_", type, "_angle")),
-        label = i18n("Angle:"),
-        value = 0,
-        min = 0,
-        max = 360,
         width = "100%"
       )
     )

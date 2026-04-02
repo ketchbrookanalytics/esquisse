@@ -133,7 +133,7 @@ controls_axes_server <- function(id,
 
 
 
-get_axis_text <- function(face, size, angle, hjust = 0, vjust = 0, lineheight = 1) {
+get_axis_text <- function(face, size, angle = 0, hjust = 0, vjust = 0, lineheight = 1) {
   options <- dropNulls(list(
     face = if (isTRUE(face != "plain")) face,
     size = if (isTRUE(size != 10)) size,
