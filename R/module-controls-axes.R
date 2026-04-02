@@ -33,6 +33,7 @@ controls_axes_ui <- function(id, ui_defaults) {
         selected = "identity",
         choices = scales_trans,
         dropboxWrapper = "body",
+        zIndex = 9999,
         width = "100%"
       )
     ),
@@ -55,6 +56,7 @@ controls_axes_ui <- function(id, ui_defaults) {
         selected = "identity",
         choices = scales_trans,
         dropboxWrapper = "body",
+        zIndex = 9999,
         width = "100%"
       )
     )
@@ -170,6 +172,7 @@ input_axis_text <- function(axis = c("x", "y"), ns = identity, ui_defaults) {
           c("Plain", "Italic", "Bold", "Bold/Italic")
         ),
         dropboxWrapper = "body",
+        zIndex = 9999,
         width = "100%"
       ),
       numericInput(

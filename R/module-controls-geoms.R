@@ -88,6 +88,7 @@ controls_geoms_ui <- function(id, style = NULL) {
           "plus", "cross", "asterisk"
         ),
         dropboxWrapper = "body",
+        zIndex = 9999,
         width = "100%"
       )
     ),
@@ -111,6 +112,7 @@ controls_geoms_ui <- function(id, style = NULL) {
           c("solid", "dashed", "dotted", "dotdash", "longdash", "twodash")
         ),
         dropboxWrapper = "body",
+        zIndex = 9999,
         width = "100%"
       )
     ),
