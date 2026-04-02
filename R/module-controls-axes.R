@@ -27,7 +27,7 @@ controls_axes_ui <- function(id, ui_defaults) {
         label = i18n("X-Axis limits (empty for none):"),
         value = c(NA, NA)
       ),
-      selectInput(
+      shinyWidgets::virtualSelectInput(
         inputId = ns("transX"),
         label = i18n("X-Axis transform:"),
         selected = "identity",
@@ -48,7 +48,7 @@ controls_axes_ui <- function(id, ui_defaults) {
         label = i18n("Y-Axis limits (empty for none):"),
         value = c(NA, NA)
       ),
-      selectInput(
+      shinyWidgets::virtualSelectInput(
         inputId = ns("transY"),
         label = i18n("Y-Axis transform:"),
         selected = "identity",
