@@ -183,14 +183,6 @@
   border: none !important;
 }
 
-/* box drag and drop */
-.container-drag-source, .box-dad {
-  border-radius: 255px 15px 225px 15px/15px 225px 15px 255px !important;
-  border: dashed 2px #ccc !important;
-}
-
-
-
 /* drop menu input */
 .drop-input, .drop-input-main {
   height: 100%;
