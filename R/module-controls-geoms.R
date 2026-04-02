@@ -174,18 +174,6 @@ controls_geoms_ui <- function(id, style = NULL) {
       )
     ),
     tags$div(
-      id = ns("controls-bar"),
-      style = "display: none;",
-      prettyRadioButtons(
-        inputId = ns("stat_fun"),
-        label = i18n("Stat summary function:"),
-        inline = TRUE,
-        status = "primary",
-        choices = c("sum", "mean", "min", "max"),
-        outline = TRUE
-      )
-    ),
-    tags$div(
       id = ns("controls-density"),
       style = "display: none;",
       sliderInput(
@@ -253,7 +241,7 @@ controls_geoms_server <- function(id,
 
         dropNulls(list(
           stat = if (identical(geom, "bar") & isTRUE("yvar" %in% aesthetics)) "summary",
-          fun = if (identical(geom, "bar") & isTRUE("yvar" %in% aesthetics)) input$stat_fun,
+          fun = if (identical(geom, "bar") & isTRUE("yvar" %in% aesthetics)) "sum",
           adjust = input$adjust,
           position = if (
             !identical(input$position, "stack") &
