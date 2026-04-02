@@ -60,7 +60,7 @@ controls_ui <- function(id,
                         layout = c("dropdown", "accordion"),
                         downloads = downloads_labels(),
                         n_geoms = 1,
-                        default_opts) {
+                        ui_defaults) {
   ns <- NS(id)
   layout <- match.arg(layout)
   if (!is.null(controls)) {
@@ -116,7 +116,7 @@ controls_ui <- function(id,
   }
   if (isTRUE("labs" %in% controls)) {
     listControls[[length(listControls) + 1]] <- funControl(
-      controls_labs_ui(id = ns("labs"), default_opts),
+      controls_labs_ui(id = ns("labs"), ui_defaults),
       inputId = ns("controls-labs"),
       class = "esquisse-controls-labs",
       style = "default",
@@ -128,7 +128,7 @@ controls_ui <- function(id,
   }
   if (isTRUE("axes" %in% controls)) {
     listControls[[length(listControls) + 1]] <- funControl(
-      controls_axes_ui(ns("axes"), default_opts),
+      controls_axes_ui(ns("axes"), ui_defaults),
       inputId = ns("controls-axes"),
       class = "esquisse-controls-axes",
       style = "default",
@@ -173,7 +173,7 @@ controls_ui <- function(id,
             padding = "5px 7px"
           )
         },
-        default_opts
+        ui_defaults
       ),
       inputId = ns("controls-theme"),
       class = "esquisse-controls-theme",
@@ -275,7 +275,7 @@ controls_server <- function(id,
                             width = reactive(NULL),
                             height = reactive(NULL),
                             drop_ids = TRUE,
-                            default_opts) {
+                            ui_defaults) {
 
   callModule(
     id = id,
@@ -296,7 +296,7 @@ controls_server <- function(id,
         id = "labs",
         data_r = data_r,
         aesthetics_r = reactive(aesthetics_r()[[1]]),
-        default_opts
+        ui_defaults
       )
 
       geometries_r <- controls_multigeoms_server(

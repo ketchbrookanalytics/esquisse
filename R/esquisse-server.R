@@ -33,7 +33,7 @@ esquisse_server <- function(id,
                             n_geoms = 8,
                             drop_ids = TRUE,
                             notify_warnings = NULL,
-                            default_opts = list(
+                            ui_defaults = list(
                               title_text_size = 13,
                               subtitle_text_size = 11,
                               caption_text_size = 9,
@@ -185,7 +185,7 @@ esquisse_server <- function(id,
         width = reactive(rv_render_ggplot$plot_width),
         height = reactive(rv_render_ggplot$plot_height),
         drop_ids = drop_ids,
-        default_opts = default_opts
+        ui_defaults = ui_defaults
       )
 
 

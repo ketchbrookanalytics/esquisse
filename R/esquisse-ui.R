@@ -52,7 +52,7 @@ esquisse_ui <- function(id,
                         layout_sidebar = FALSE,
                         downloads = downloads_labels(),
                         n_geoms = 8,
-                        default_opts = list(
+                        ui_defaults = list(
                           title_text_size = 13,
                           subtitle_text_size = 11,
                           caption_text_size = 9,
@@ -134,7 +134,7 @@ esquisse_ui <- function(id,
           controls = controls,
           downloads = downloads,
           n_geoms = n_geoms,
-          default_opts = default_opts
+          ui_defaults = ui_defaults
         )
       )
     } else {
@@ -155,7 +155,7 @@ esquisse_ui <- function(id,
             layout = "accordion",
             downloads = downloads,
             n_geoms = n_geoms,
-            default_opts = default_opts
+            ui_defaults = ui_defaults
           )
         ),
 

@@ -7,7 +7,7 @@
 #' @noRd
 #' @importFrom htmltools tagList tags
 #'
-controls_labs_ui <- function(id, default_opts) {
+controls_labs_ui <- function(id, ui_defaults) {
   ns <- NS(id)
   tags$div(
     class = "form-group",
@@ -15,31 +15,31 @@ controls_labs_ui <- function(id, default_opts) {
       inputId = ns("labs_title"),
       placeholder = i18n("Title"),
       label = i18n("Title:"),
-      defaults = get_labs_defaults("title", default_opts)
+      defaults = get_labs_defaults("title", ui_defaults)
     ),
     labs_options_input(
       inputId = ns("labs_subtitle"),
       placeholder = i18n("Subtitle"),
       label = i18n("Subtitle:"),
-      defaults = get_labs_defaults("subtitle", default_opts)
+      defaults = get_labs_defaults("subtitle", ui_defaults)
     ),
     labs_options_input(
       inputId = ns("labs_caption"),
       placeholder = i18n("Caption"),
       label = i18n("Caption:"),
-      defaults = get_labs_defaults("caption", default_opts)
+      defaults = get_labs_defaults("caption", ui_defaults)
     ),
     labs_options_input(
       inputId = ns("labs_x"),
       placeholder = i18n("X label"),
       label = i18n("X label:"),
-      defaults = get_labs_defaults("x", default_opts)
+      defaults = get_labs_defaults("x", ui_defaults)
     ),
     labs_options_input(
       inputId = ns("labs_y"),
       placeholder = i18n("Y label"),
       label = i18n("Y label:"),
-      defaults = get_labs_defaults("y", default_opts)
+      defaults = get_labs_defaults("y", ui_defaults)
     ),
     tags$div(
       id = ns("controls-labs-fill"),
@@ -68,7 +68,7 @@ controls_labs_ui <- function(id, default_opts) {
 controls_labs_server <- function(id,
                                  data_r = reactive(NULL),
                                  aesthetics_r = reactive(NULL), 
-                                 default_opts) {
+                                 ui_defaults) {
   moduleServer(
     id = id,
     function(input, output, session) {
@@ -122,11 +122,11 @@ controls_labs_server <- function(id,
       theme_r <- reactive({
         inputs <- reactiveValuesToList(input)
         list(
-          title = get_labs_options(inputs, "title", default_opts),
-          subtitle = get_labs_options(inputs, "subtitle", default_opts),
-          caption = get_labs_options(inputs, "caption", default_opts),
-          x = get_labs_options(inputs, "x", default_opts),
-          y = get_labs_options(inputs, "y", default_opts)
+          title = get_labs_options(inputs, "title", ui_defaults),
+          subtitle = get_labs_options(inputs, "subtitle", ui_defaults),
+          caption = get_labs_options(inputs, "caption", ui_defaults),
+          x = get_labs_options(inputs, "x", ui_defaults),
+          y = get_labs_options(inputs, "y", ui_defaults)
         )
       })
 
@@ -205,21 +205,21 @@ labs_options_input <- function(inputId, label, placeholder, defaults = list()) {
   )
 }
 
-get_labs_defaults <- function(name = c("title", "subtitle", "caption", "x", "y"), default_opts) {
+get_labs_defaults <- function(name = c("title", "subtitle", "caption", "x", "y"), ui_defaults) {
   name <- match.arg(name)
   defaults_labs <- list(
-    title = list(size = default_opts$title_text_size, face = "plain", hjust = 0), # theme_get()$plot.title
-    subtitle = list(size = default_opts$subtitle_text_size, face = "plain", hjust = 0), # theme_get()$plot.subtitle
-    caption = list(size = default_opts$caption_text_size, face = "plain", hjust = 1), # theme_get()$plot.caption
-    x = list(size = default_opts$x_label_text_size, face = "plain", hjust = 0.5),
-    y = list(size = default_opts$y_label_text_size, face = "plain", hjust = 0.5)
+    title = list(size = ui_defaults$title_text_size, face = "plain", hjust = 0), # theme_get()$plot.title
+    subtitle = list(size = ui_defaults$subtitle_text_size, face = "plain", hjust = 0), # theme_get()$plot.subtitle
+    caption = list(size = ui_defaults$caption_text_size, face = "plain", hjust = 1), # theme_get()$plot.caption
+    x = list(size = ui_defaults$x_label_text_size, face = "plain", hjust = 0.5),
+    y = list(size = ui_defaults$y_label_text_size, face = "plain", hjust = 0.5)
   )
   defaults_labs[[name]]
 }
 
-get_labs_options <- function(inputs, name = c("title", "subtitle", "caption", "x", "y"), default_opts) {
+get_labs_options <- function(inputs, name = c("title", "subtitle", "caption", "x", "y"), ui_defaults) {
   name <- match.arg(name)
-  defaults <- get_labs_defaults(name, default_opts)
+  defaults <- get_labs_defaults(name, ui_defaults)
   inputs <- inputs[paste0("labs_", name, c("_size", "_face", "_align"))]
   names(inputs) <- c("size", "face", "align")
   if (length(inputs$align) < 1) {

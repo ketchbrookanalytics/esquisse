@@ -9,7 +9,7 @@
 #' @importFrom htmltools tagList tags
 #' @importFrom shinyWidgets prettyRadioButtons numericRangeInput prettyToggle prettySwitch
 #'
-controls_axes_ui <- function(id, default_opts) {
+controls_axes_ui <- function(id, ui_defaults) {
 
   ns <- NS(id)
 
@@ -17,7 +17,7 @@ controls_axes_ui <- function(id, default_opts) {
 
   tagList(
 
-    input_axis_text("x", ns = ns, default_opts),
+    input_axis_text("x", ns = ns, ui_defaults),
 
     tags$div(
       id = ns("controls-scale-trans-x"),
@@ -37,7 +37,7 @@ controls_axes_ui <- function(id, default_opts) {
     ),
     tags$hr(),
 
-    input_axis_text("y", ns = ns, default_opts),
+    input_axis_text("y", ns = ns, ui_defaults),
 
     tags$div(
       id = ns("controls-scale-trans-y"),
@@ -150,7 +150,7 @@ get_axis_text <- function(face, size, angle = 0, hjust = 0, vjust = 0, lineheigh
 }
 
 
-input_axis_text <- function(axis = c("x", "y"), ns = identity, default_opts) {
+input_axis_text <- function(axis = c("x", "y"), ns = identity, ui_defaults) {
   axis <- match.arg(axis)
   tagList(
     tags$b(toupper(axis), i18n("axis text options:")),
@@ -172,7 +172,7 @@ input_axis_text <- function(axis = c("x", "y"), ns = identity, default_opts) {
       numericInput(
         inputId = ns(paste0(axis, "_axis_text_size")),
         label = i18n("Size:"),
-        value = default_opts$axis_text_size,
+        value = ui_defaults$axis_text_size,
         min = 0,
         width = "100%"
       ),

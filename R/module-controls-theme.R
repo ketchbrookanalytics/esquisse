@@ -11,7 +11,7 @@
 #' @importFrom utils head
 #' @importFrom htmltools tagList tags
 #' @importFrom shinyWidgets radioGroupButtons colorPickr virtualSelectInput
-controls_theme_ui <- function(id, style = NULL, default_opts) {
+controls_theme_ui <- function(id, style = NULL, ui_defaults) {
 
   ns <- NS(id)
 
@@ -30,7 +30,7 @@ controls_theme_ui <- function(id, style = NULL, default_opts) {
       optionsCount = 5,
       width = "100%"
     ),
-    input_legend_options(ns, default_opts)
+    input_legend_options(ns, ui_defaults)
   )
 }
 
@@ -74,7 +74,7 @@ controls_theme_server <- function(id) {
 }
 
 
-input_legend_text <- function(type = c("text", "title"), ns = identity, default_opts) {
+input_legend_text <- function(type = c("text", "title"), ns = identity, ui_defaults) {
   type <- match.arg(type)
   tagList(
     tags$p(capitalize(type), "options:"),
@@ -96,7 +96,7 @@ input_legend_text <- function(type = c("text", "title"), ns = identity, default_
       numericInput(
         inputId = ns(paste0("legend_", type, "_size")),
         label = i18n("Size:"),
-        value = if(type == "text") default_opts$legend_text_size else default_opts$legend_title_size,
+        value = if(type == "text") ui_defaults$legend_text_size else ui_defaults$legend_title_size,
         min = 0,
         width = "100%"
       )
@@ -104,7 +104,7 @@ input_legend_text <- function(type = c("text", "title"), ns = identity, default_
   )
 }
 
-input_legend_options <- function(ns, default_opts) {
+input_legend_options <- function(ns, ui_defaults) {
   tagList(
     tags$hr(),
     tags$b("Legend options:"),
@@ -122,7 +122,7 @@ input_legend_options <- function(ns, default_opts) {
       choices = c("Left" = "left", "Top" = "top", "Bottom" = "bottom", "Right" = "right", "Center" = "center"),
       width = "100%"
     ),
-    input_legend_text("text", ns = ns, default_opts),
-    input_legend_text("title", ns = ns, default_opts)
+    input_legend_text("text", ns = ns, ui_defaults),
+    input_legend_text("title", ns = ns, ui_defaults)
   )
 }
