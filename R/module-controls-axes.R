@@ -32,6 +32,7 @@ controls_axes_ui <- function(id, ui_defaults) {
         label = i18n("X-Axis transform:"),
         selected = "identity",
         choices = scales_trans,
+        dropboxWrapper = "body",
         width = "100%"
       )
     ),
@@ -53,6 +54,7 @@ controls_axes_ui <- function(id, ui_defaults) {
         label = i18n("Y-Axis transform:"),
         selected = "identity",
         choices = scales_trans,
+        dropboxWrapper = "body",
         width = "100%"
       )
     )
@@ -167,6 +169,7 @@ input_axis_text <- function(axis = c("x", "y"), ns = identity, ui_defaults) {
           c("plain", "italic", "bold", "bold.italic"),
           c("Plain", "Italic", "Bold", "Bold/Italic")
         ),
+        dropboxWrapper = "body",
         width = "100%"
       ),
       numericInput(

@@ -87,6 +87,7 @@ controls_geoms_ui <- function(id, style = NULL) {
           paste("triangle down", c("open", "filled")),
           "plus", "cross", "asterisk"
         ),
+        dropboxWrapper = "body",
         width = "100%"
       )
     ),
@@ -109,6 +110,7 @@ controls_geoms_ui <- function(id, style = NULL) {
           c("solid", "dashed", "dotted", "dotdash", "longdash", "twodash"),
           c("solid", "dashed", "dotted", "dotdash", "longdash", "twodash")
         ),
+        dropboxWrapper = "body",
         width = "100%"
       )
     ),

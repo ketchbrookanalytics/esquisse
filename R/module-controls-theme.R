@@ -26,8 +26,8 @@ controls_theme_ui <- function(id, style = NULL, ui_defaults) {
       label = i18n("Theme:"),
       choices = themes,
       selected = getOption("esquisse.default.theme", default = "theme_minimal"),
-      dropboxWrapper = ".esquisse-controls-theme-container",
       optionsCount = 5,
+      dropboxWrapper = "body",
       width = "100%"
     ),
     input_legend_options(ns, ui_defaults)
@@ -91,6 +91,7 @@ input_legend_text <- function(type = c("text", "title"), ns = identity, ui_defau
           c("plain", "italic", "bold", "bold.italic"),
           c("Plain", "Italic", "Bold", "Bold/Italic")
         ),
+        dropboxWrapper = "body",
         width = "100%"
       ),
       numericInput(
